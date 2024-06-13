@@ -90,8 +90,8 @@ const Herosection = ({mydata}) => {
               <div className="hero-section-image">
                 <figure>
                   <img
-                    src="images/hero.jpg"
-                    alt="hero-section-photo"
+                    src="./images/hero.jpg"
+                    alt="imahe"
                     className="img-style"
                   />
                 </figure>

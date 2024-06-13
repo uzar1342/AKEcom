@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components';
-
+import { useAuth0 } from "@auth0/auth0-react";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenu,CgClose  } from "react-icons/cg";
 import { useCartContext } from '../context/cart_context';
+import Button from '../styles/Button';
 const Navb = styled.nav`
 .navbar-lists {
   display: flex;
@@ -150,7 +151,7 @@ const Nav = () => {
 
 const [menu,setmenu]=useState(false);
 const { total_item } = useCartContext();
-
+const { loginWithRedirect ,logout,isAuthenticated,user} = useAuth0();
   return (
     <Navb>
     <dir className={menu?"navbar active":"navbar"}>
@@ -171,6 +172,16 @@ const { total_item } = useCartContext();
            <li>
            <NavLink onClick={()=>setmenu(false)} className='navbar-link' to="/product">Products</NavLink>
             </li> 
+            <li>
+              {isAuthenticated? <p>{user.nickname}</p> :""}
+            </li>
+          { !isAuthenticated?  <li>
+              <Button onClick={() => loginWithRedirect()}>Log In</Button>
+          </li>:
+          <li>
+              <Button onClick={() =>logout({ logoutParams: { returnTo: window.location.origin } })}>Log Out</Button>
+          </li>
+}
             <li>
                 <NavLink onClick={()=>setmenu(false)} className='navbar-link cart-trolley--link' to="/cart">
                 

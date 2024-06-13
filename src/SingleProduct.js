@@ -98,7 +98,6 @@ const { getSingleProduct, isSingleLoading, singleProduct } =
     company,
     price,
     description,
-    category,
     stock,
     stars,
     reviews,
